@@ -3,7 +3,8 @@ import { MenuIcon, XIcon, BeakerIcon } from "@heroicons/react/solid";
 
 import "./App.css";
 
-import rr from "./MVIMG_20190414_072924.jpg";
+import rr from "./img/MVIMG_20190414_072924-150x150.jpg";
+//import rr from "./img/MVIMG_20190414_072924.jpg";
 
 const navigation = [
   { name: "Home", href: "#" },
@@ -13,7 +14,7 @@ const navigation = [
   { name: "Contact", href: "#" },
 ];
 
-const MenuItems = ({ currentMenu, currentMenuSet }) => (
+const MenuItems = ({ currentMenu, changeMenu }) => (
   <>
     {navigation.map(({ name, href }, i) => (
       <a
@@ -21,7 +22,7 @@ const MenuItems = ({ currentMenu, currentMenuSet }) => (
         className={
           "menu-item" + (currentMenu === i ? " menu-item-selected" : "")
         }
-        onClick={() => currentMenuSet(i)}
+        onClick={() => changeMenu(i)}
       >
         {name}
       </a>
@@ -31,13 +32,16 @@ const MenuItems = ({ currentMenu, currentMenuSet }) => (
 );
 
 function App() {
-  const [mobileOpen, mobileOpenSet] = useState(false);
   const [currentMenu, currentMenuSet] = useState(0);
+  const [mobileOpen, mobileOpenSet] = useState(false);
   const toggleMobileOpen = () => mobileOpenSet(!mobileOpen);
-  console.log(mobileOpen);
+  const changeMenu = (i) => {
+    currentMenuSet(i);
+    toggleMobileOpen();
+  };
+
   return (
     <header>
-      {/* <img src={rr} className="App-logo" alt="logo" /> */}
       <div className="nav">
         <div className="text">
           <BeakerIcon className="logo" />
@@ -47,7 +51,7 @@ function App() {
           </div>
         </div>
         <div className="menu-full">
-          <MenuItems {...{ currentMenu, currentMenuSet }} />
+          <MenuItems {...{ currentMenu, changeMenu }} />
         </div>
         {mobileOpen ? (
           <XIcon className="icon close" onClick={toggleMobileOpen} />
@@ -56,9 +60,12 @@ function App() {
         )}
         {mobileOpen && (
           <div className="mobile">
-            <MenuItems {...{ currentMenu, currentMenuSet }} />
+            <MenuItems {...{ currentMenu, changeMenu }} />
           </div>
         )}
+      </div>
+      <div className="img-overlay">
+        <img src={rr} className="img" alt="Red Rock" />
       </div>
     </header>
   );

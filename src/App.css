@@ -1,9 +1,11 @@
 header {
-  background: gray;
-  padding: 2vmax;
+  position: relative;
 }
 
 .nav {
+  color: white;
+  padding: 2vmax;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -37,7 +39,11 @@ header {
 
 .title-main {
   font-size: 3vmin;
-  margin-bottom: 00.5vmin;
+  margin-bottom: 0.75vmin;
+}
+
+.title-sub {
+  font-size: 2vmin;
 }
 
 .menu-item {
@@ -53,6 +59,7 @@ header {
 }
 
 .take-action {
+  color: white;
   background: var(--blue);
   border: 0;
   padding: 1vmin 1vmin;
@@ -63,6 +70,7 @@ header {
 .close {
   background: rgba(70, 70, 70, 0.8);
   border-radius: 2vmin 2vmin 0 0;
+  color: red;
 }
 
 .mobile {
@@ -80,4 +88,21 @@ header {
   .mobile {
     display: none;
   }
+}
+
+.img-overlay {
+  position: absolute;
+  top: 0;
+  background: rgb(10, 10, 10);
+  width: 100%;
+  height: 50vh;
+  z-index: -1;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  opacity: 0.6;
 }
